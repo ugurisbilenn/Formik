@@ -11,31 +11,37 @@ function App() {
         lastName: '',
         email: '',
       }}
-      onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
+      onSubmit={(values) => {
+        
+        console.log(values);
       }}
     >
-      <Form>
+      {
+        ({handleSubmit,handleChange}) => {
+          return (
+          <Form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
-        <Field id="firstName" name="firstName" placeholder="Jane" />
+        <input id="firstName" name="firstName" placeholder="Jane" onChange={handleChange}/>
           <br/>
           <br/>
         <label htmlFor="lastName">Last Name</label>
-        <Field id="lastName" name="lastName" placeholder="Doe" />
+        <input id="lastName" name="lastName" placeholder="Doe" onChange={handleChange}/>
         <br/>
           <br/>
         <label htmlFor="email">Email</label>
-        <Field
+        <input
           id="email"
           name="email"
           placeholder="jane@acme.com"
           type="email"
+          onChange={handleChange}
         />
           <br/>
           <br/>
         <button type="submit">Submit</button>
       </Form>
+        )}
+      }
     </Formik>
   </div>
   );
